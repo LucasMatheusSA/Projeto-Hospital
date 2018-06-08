@@ -6,7 +6,7 @@
 #include "Validacoes.h"
 #include "Medico.h"
 
-// para fins de teste mano
+// para fins de teste mano push
 void marcar_consulta(char cpf[12],char crm[9],FILE *arqM,FILE *arqCon,int opp){
 	Consulta aux;
 	Data data;
