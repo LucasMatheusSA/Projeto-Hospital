@@ -6,6 +6,27 @@
 #include "Validacoes.h"
 #include "Medico.h"
 
+int procurar_fila(Data data,char crm[9],int turno,FILE *arqCon){
+	int resp,qtd=0;
+	Consulta aux;
+	fseek(arqCon,0,0);
+	while(!feof(arqCon)){
+		resp=fread(&aux,sizeof(Consulta),1,arqCon);
+		if(resp!=1 && !feof(arqCon)){
+			printf("Erro na leitura!\n");
+		}else{
+			if(aux.ano == data.ano && aux.mes == data.mes && aux.dia == data.dia && strcmp(aux.crm,crm)==0 && aux.turno== turno){
+				qtd++;
+			}
+		}
+	}
+	if(qtd<10){
+		return FALSE;
+	}else{
+		return TRUE;
+	}
+}
+
 // para fins de teste mano push
 void marcar_consulta(char cpf[12],char crm[9],FILE *arqM,FILE *arqCon,int opp){
 	Consulta aux;
@@ -99,26 +120,7 @@ void Consultar_consulta(FILE *arq,char cpf[12],FILE *arqM,TNO *treeM){
 	printf("\n^ Resultado a cima ^\n");
 }
 
-int procurar_fila(Data data,char crm[9],int turno,FILE *arqCon){
-	int resp,qtd=0;
-	Consulta aux;
-	fseek(arqCon,0,0);
-	while(!feof(arqCon)){
-		resp=fread(&aux,sizeof(Consulta),1,arqCon);
-		if(resp!=1 && !feof(arqCon)){
-			printf("Erro na leitura!\n");
-		}else{
-			if(aux.ano == data.ano && aux.mes == data.mes && aux.dia == data.dia && strcmp(aux.crm,crm)==0 && aux.turno== turno){
-				qtd++;
-			}
-		}
-	}
-	if(qtd<10){
-		return FALSE;
-	}else{
-		return TRUE;
-	}
-}
+
 
 int busca_consulta_medico(FILE *arq,char cod[]){
 	Consulta aux;
