@@ -8,6 +8,7 @@
 #include "Fila.h"
 
 int main(){
+	int i=0;
     char op,op1,op2,op3, cpf[12], paciente[] = "arq_paciente.txt", medico[] = "arq_medico.txt", consulta[]="arq_consulta.txt", auxNome[T], crm[9], especi[50];
     int opp = 0, i = 0, pos = 0, esp, turnoX;
     FILE * arqP, *arqM, *arqCon;
